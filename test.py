@@ -19,7 +19,7 @@ if Menu == "Dashboard": st.title('Heart Stroke Dashboard')
 if Menu == "Recommendations" : st.title("Results")
 
 
-df= pd.read_csv("C:/Users/Lenovo/Desktop/New folder/healthcare-dataset-stroke-data.csv")
+df= pd.read_csv("healthcare-dataset-stroke-data.csv")
 if Menu=="Dataset": st.write(df)
 
 #header = st.container()
