@@ -18,12 +18,10 @@ if Menu == "Main Page": st.title('Heart Stroke Dashboard')
 if Menu == "Dataset": st.title('Heart Stroke Dataset')
 if Menu == "Dashboard": st.title('Heart Stroke Exploratory Data Analysis')
 
-
+if Menu == "Main Page": st.caption('The aim of this dashboard is to visualize the risk factors that might lead to heart stroke and predict based on the given features whether a patient is likely to have a stroke or not') 
 
 df= pd.read_csv("healthcare-dataset-stroke-data.csv")
 if Menu=="Dataset": st.write(df)
-
-
 
 
 
@@ -169,13 +167,13 @@ if Menu=="Dashboard":st.write(work)
 
 
 # BMI Distribution                                  
-bmi = displot('bmi')                                 
-if Menu=="Dashboard":st.write(bmi)                                 
+#bmi = displot('bmi')                                 
+#if Menu=="Dashboard":st.write(bmi)                                 
                                  
    
 # Average Glucose Level Distribution                                 
-glucose =  distplot('avg_glucose_level')
-if Menu=="Dashboard":st.write(glucose)                                  
+#glucose =  distplot('avg_glucose_level')
+#if Menu=="Dashboard":st.write(glucose)                                  
                                  
                                  
 def count_bar_plot(df,x,hue,title):
