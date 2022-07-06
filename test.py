@@ -172,7 +172,7 @@ if Menu=="Descriptive Statistics": plt.hist(data_eda['bmi'], bins=10) #10 bins i
 if Menu=="Descriptive Statistics": plt.xlabel("bmi")
 if Menu=="Descriptive Statistics": plt.title("Density")
 if Menu=="Descriptive Statistics": plt.ylabel("Body Mass Index Distribution")
-if Menu=="Descriptive Statistics": st.pyplot(bmi)                               
+if Menu=="Descriptive Statistics": st.write(bmi)                               
                                  
    
 # Average Glucose Level Distribution                                 
@@ -181,7 +181,7 @@ if Menu=="Descriptive Statistics": plt.hist(data_eda['avg_glucose_level'], bins=
 if Menu=="Descriptive Statistics": plt.xlabel("average glucose level")
 if Menu=="Descriptive Statistics": plt.title("Density")
 if Menu=="Descriptive Statistics": plt.ylabel("Average Glucose Level Distribution")
-if Menu=="Descriptive Statistics": st.pyplot(glucose) 
+if Menu=="Descriptive Statistics": st.write(glucose) 
 
 
                                  
