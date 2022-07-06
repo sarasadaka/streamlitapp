@@ -179,7 +179,7 @@ def horizontal_bar_chart(df,x,y,color,title):
     fig = px.bar(df, x=x, y=y, color=color,                  
                  height=600,
                  title=title)
-    #if Menu=="Categorical Features":st.write(fig)
+    if Menu=="Categorical Features":st.write(fig)
     
 
                                  
