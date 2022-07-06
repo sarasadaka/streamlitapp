@@ -13,10 +13,12 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 
-Menu = option_menu(None, ["Main Page","Dataset","Descriptive Statistics","Categorical Features","Numerical Features","Predictive Model"],icons=["house","cloud","sliders","bar-chart-line","sliders","gear"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
+Menu = option_menu(None, ["Main Page","Dataset","Descriptive Statistics","Categorical Features","Numerical Features"],icons=["house","cloud","sliders","bar-chart-line","sliders"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
 if Menu == "Main Page": st.title('Heart Stroke Dashboard')
 if Menu == "Dataset": st.title('Heart Stroke Dataset')
-if Menu == "Dashboard": st.title('Heart Stroke Exploratory Data Analysis')
+if Menu == "Descriptive Statistics": st.title('Heart Stroke Exploratory Data Analysis')
+if Menu == "Categorical Features": st.title('Distribution of Categorical Features')
+if Menu == "Numerical Features": st.title('Distribution of Numerical Features') 
 
   
 if Menu == "Main Page": st.header('The aim of this dashboard is to visualize the risk factors that might lead to heart stroke based on teh given features in the dataset')
@@ -98,52 +100,52 @@ def pie_graph(df,title,values):
     ])
 
     fig.update_layout(title_text = title)
-    if Menu=="Descriptive Statistics":st.pyplot(fig)
+    if Menu=="Descriptive Statistics":st.write(fig)
 
 # Start Exploratory Data Analysis
 # Check the distribution of each feature in the dataset by visualizing it using a pie graph
 
 # Age Distribution                                 
 age = pie_graph(data_eda,"Age Group Distribution",'age group')
-if Menu=="Descriptive Statistics": st.pyplot(age)
+if Menu=="Descriptive Statistics": st.write(age)
 
 # Gender Distribution                                 
 gender =pie_graph(data_eda, 'Gender Distribution','gender')
-if Menu=="Descriptive Statistics": st.pyplot(gender)
+if Menu=="Descriptive Statistics": st.write(gender)
 
 
 # Hypertension Distribution                                 
 hypertension = pie_graph(data_eda, 'Hypertension Distribution','hypertension')
-if Menu=="Descriptive Statistics":st.pyplot(hypertension)
+if Menu=="Descriptive Statistics":st.write(hypertension)
 
 
  # Heart Disease Distribution                                
 heart = pie_graph(data_eda, 'Heart disease Distribution','heart_disease')
-if Menu=="Descriptive Statistics":st.pyplot(heart)
+if Menu=="Descriptive Statistics":st.write(heart)
 
 
 # Ever married Distribution                                 
 married = pie_graph(data_eda, 'Ever married  Distribution','ever_married')
-if Menu=="Descriptive Statistics":st.pyplot(married)
+if Menu=="Descriptive Statistics":st.write(married)
 
                                  
 # Residence Type Distribution 
 residence = pie_graph(data_eda, 'Residence type Distribution','Residence_type')                                 
-if Menu=="Descriptive Statistics":st.pyplot(residence)                                 
+if Menu=="Descriptive Statistics":st.write(residence)                                 
 
                                  
 # Smoking Distribution
 smoke = pie_graph(data_eda,'Smoking Status Distribution','smoking_status')                                 
-if Menu=="Descriptive Statistics":st.pyplot(smoke)                                  
+if Menu=="Descriptive Statistics":st.write(smoke)                                  
                                  
 # Stroke Distribution                                 
 stroke = pie_graph(data_eda, 'Stroke Distribution', 'stroke')
-if Menu=="Descriptive Statistics":st.pyplot(stroke)
+if Menu=="Descriptive Statistics":st.write(stroke)
 
 
 # Work Type Distribution                                 
 work = pie_graph(data_eda, 'Work type Distribution','work_type')
-if Menu=="Descriptive Statistics":st.pyplot(work)
+if Menu=="Descriptive Statistics":st.write(work)
 
 
                                  
