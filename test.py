@@ -21,7 +21,7 @@ if Menu == "Categorical Features": st.title('Distribution of Categorical Feature
 if Menu == "Numerical Features": st.title('Distribution of Numerical Features') 
 
   
-if Menu == "Main Page": st.header('The aim of this dashboard is to visualize the risk factors that might lead to heart stroke based on teh given features in the dataset')
+if Menu == "Main Page": st.header('The aim of this dashboard is to visualize the risk factors that might lead to heart stroke based on the given features in the dataset')
 
 df= pd.read_csv("healthcare-dataset-stroke-data.csv")
 if Menu=="Dataset": st.write(df)
