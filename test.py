@@ -224,10 +224,10 @@ if Menu=="Numerical Features": st.pyplot(f1)
   
 
 if Menu == 'Numerical Features':plt.figure(1, figsize=(15,7))
-if Menu == 'Numerical Features':n = 0
-if Menu == 'Numerical Features':for x in ['age','avg_glucose_level','bmi']:
-    if Menu == 'Numerical Features':for y in ['age','avg_glucose_level','bmi']:
-        if Menu == 'Numerical Features':n += 1
+n = 0
+for x in ['age','avg_glucose_level','bmi']:
+    for y in ['age','avg_glucose_level','bmi']:
+        n += 1
         if Menu == 'Numerical Features':plt.subplot(3,3,n)
         if Menu == 'Numerical Features':plt.subplots_adjust(hspace = 0.5, wspace = 0.5)
         if Menu == 'Numerical Features': b = sns.regplot(x = x, y = y, data = df)
