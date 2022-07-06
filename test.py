@@ -208,34 +208,9 @@ if Menu=="Numerical Features":st.pyplot(fig2)
   
 fig3 = cnditioning_linear_plot('bmi','age','stroke',data_eda)
 if Menu=="Numerical Features":st.pyplot(fig3)   
-
-
-# Average glucose level as per age 
-if Menu=="Numerical Features":f, age_glucose = plt.subplots(1,1, figsize=(10,8))
-if Menu=="Numerical Features": age_glucose = sns.scatterplot(data = df , x = 'age' , y ='avg_glucose_level').set(title='Average Glucose Level as per Age')
-if Menu=="Numerical Features": st.pyplot(f)
-
-
-# BMI as per age
-if Menu=="Numerical Features":f1, age_bmi = plt.subplots(1,1, figsize=(10,8))
-if Menu=="Numerical Features": age_bmi = sns.scatterplot(data = df , x = 'age' , y ='bmi').set(title='BMI as per Age')
-if Menu=="Numerical Features": st.pyplot(f1)
   
   
-
-if Menu == 'Numerical Features':plt.figure(1, figsize=(15,7))
-n = 0
-for x in ['age','avg_glucose_level','bmi']:
-    for y in ['age','avg_glucose_level','bmi']:
-        n += 1
-        if Menu == 'Numerical Features':plt.subplot(3,3,n)
-        if Menu == 'Numerical Features':plt.subplots_adjust(hspace = 0.5, wspace = 0.5)
-        if Menu == 'Numerical Features': b = sns.regplot(x = x, y = y, data = df)
-        if Menu == 'Numerical Features': plt.ylabel(y.split()[0] + ' ' + y.split()[1] if len(y.split()) > 1 else y)
-plt.show()
-if Menu == 'Numerical Features': st.write(b) 
-  
-  
+ 
 f, ax = plt.subplots(figsize = (12,10))
 sns.heatmap(df.corr(),
             annot = True,
