@@ -227,8 +227,9 @@ if Menu=="Categorical Features":st.write(smoke_stroke)
 
 
 def cnditioning_linear_plot(x,y,hue,df):
-    sns.lmplot(x=x, y=y, hue=hue, data=df,
-               markers=["o", "x"], palette="Set1")  
+    lin = sns.lmplot(x=x, y=y, hue=hue, data=df,
+               markers=["o", "x"], palette="Set1") 
+    if Menu == "Numerical Features": st.write(lin)
   
 fig1 = cnditioning_linear_plot('age','avg_glucose_level','stroke',data_eda) 
 if Menu=="Numerical Features":st.write(fig1) 
