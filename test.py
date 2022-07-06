@@ -13,43 +13,36 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 
-Menu = option_menu(None, ["Dataset","Dashboard", "Results"],icons=["cloud","bar-chart-line","clipboard-check"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
+Menu = option_menu(None, ["Main Page","Dataset","Dashboard"],icons=["home","cloud","bar-chart-line"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
+if Menu == "Main Page": st.title('Heart Stroke Dashboard")
 if Menu == "Dataset": st.title('Heart Stroke Dataset')
-if Menu == "Dashboard": st.title('Heart Stroke Dashboard')
-if Menu == "Recommendations" : st.title("Results")
+if Menu == "Dashboard": st.title('Heart Stroke Exploratory Data Analysis')
+
 
 
 df= pd.read_csv("healthcare-dataset-stroke-data.csv")
 if Menu=="Dataset": st.write(df)
 
-#header = st.container()
 
-#with header: 
-    #st.title("Analyzing Heart Strokes")
+
+
 
 # Examine the dataset
 #df.shape
 df.info()
 df.describe()
 
-
+# Drop 'Other' in gender column
 df.drop(df[df.gender == 'Other'].index, inplace = True)
 
-# Exploring missing data
-#plt.style.use("seaborn")
-#plt.figure(figsize=(10,5))
-#fig1 = sns.heatmap(df.isnull(), yticklabels = False, cmap = 'plasma')
-#plt.title('Null Values in Data Frame')
-#st.pyplot(fig1)
 
 
 # get the number of missing data points per column
-
 missing_value_count = (df.isnull().sum())
 print(missing_value_count[missing_value_count > 0])
 
+                                 
 # percent of data that is missing
-
 total_cells = np.product(df.shape)
 total_missing_value = missing_value_count.sum()
 print('Percentage of missing value in Data Frame is:', total_missing_value / total_cells*100)
@@ -58,7 +51,7 @@ print('Total number of our missing value is:', total_missing_value)
 
 
 # Handling missing values
-
+# We only have missing values in bmi column, so we will replace them with the mean of the column rather than dropping them
 df['bmi'].fillna(df['bmi'].mean(),inplace=True)
 df['bmi'].isnull().sum()
 
@@ -96,7 +89,7 @@ data_eda["heart_disease"]  = df["heart_disease"] .map({1: "Yes" ,           0: "
 
 
 
-
+# Group different age groups in dataset into age brackets for easy interpretation
 def age_cohort(age):
     if   age >= 0 and age <= 20:
         return "0-20"
@@ -129,45 +122,62 @@ def pie_graph(df,title,values):
     fig.update_layout(title_text = title)
     if Menu=="Dashboard":st.write(fig)
 
+# Start Exploratory Data Analysis
+# Check the distribution of each feature in the dataset by visualizing it using a pie graph
 
-
-#distribution_list = ["age","gender","hypertension","heart_disease","ever_married","work_type","stroke"]
-#distributionl = st.selectbox('Choose an option:', options= distribution_list)
-#dfage = data_eda[data_eda["age"] == distributionl]
-#dfgender = data_eda[data_eda["gender"] == distributionl]
-
-
-
-if Menu=="Dashboard":st.header("What are the distribution of features in data? How are they related to Heart Stroke?")
-
-
-
+# Age Distribution                                 
 age = pie_graph(data_eda,"Age Group Distribution",'age group')
 if Menu=="Dashboard": st.write(age)
 
+# Gender Distribution                                 
 gender =pie_graph(data_eda, 'Gender Distribution','gender')
 if Menu=="Dashboard": st.write(gender)
 
 
+# Hypertension Distribution                                 
 hypertension = pie_graph(data_eda, 'Hypertension Distribution','hypertension')
 if Menu=="Dashboard":st.write(hypertension)
 
 
+ # Heart Disease Distribution                                
 heart = pie_graph(data_eda, 'Heart disease Distribution','heart_disease')
 if Menu=="Dashboard":st.write(heart)
 
 
+# Ever married Distribution                                 
 married = pie_graph(data_eda, 'Ever married  Distribution','ever_married')
 if Menu=="Dashboard":st.write(married)
 
+                                 
+# Residence Type Distribution 
+residence = pie_graph(data_eda, 'Residence type Distribution','Residence_type')                                 
+if Menu=="Dashboard":st.write(residence)                                 
 
+                                 
+# Smoking Distribution
+smoke = pie_graph(data_eda,'Smoking Status Distribution','smoking_status')                                 
+if Menu=="Dashboard":st.write(smoke)                                  
+                                 
+# Stroke Distribution                                 
 stroke = pie_graph(data_eda, 'Stroke Distribution', 'stroke')
 if Menu=="Dashboard":st.write(stroke)
 
 
+# Work Type Distribution                                 
 work = pie_graph(data_eda, 'Work type Distribution','work_type')
 if Menu=="Dashboard":st.write(work)
 
+
+# BMI Distribution                                  
+bmi = displot('bmi')                                 
+if Menu=="Dashboard":st.write(bmi)                                 
+                                 
+   
+# Average Glucose Level Distribution                                 
+glucose =  distplot('avg_glucose_level')
+if Menu=="Dashboard":st.write(glucose)                                  
+                                 
+                                 
 def count_bar_plot(df,x,hue,title):
     fig = sns.countplot(x=x, hue=hue, data=df)
     fig.set_title(title)
@@ -200,12 +210,14 @@ def horizontal_bar_chart(df,x,y,color,title):
     if Menu=="Dashboard":st.write(fig)
     
 
+                                 
+# Stroke Distribution by Work Type                                 
 group = data_eda.groupby(['stroke','work_type'],as_index = False).size().sort_values(by='size')
 work_type = horizontal_bar_chart(df = group,x = 'stroke',y = 'size',color = 'work_type',title = 'Stroke distribution by work type')
 if Menu=="Dashboard":st.write(work_type)
 
 
-
+# Stroke distribution by Smoking Status
 group = data_eda.groupby(['stroke','smoking_status'],as_index = False).size().sort_values(by='size')
 smoke_stroke = horizontal_bar_chart(df = group,x = 'stroke',y = 'size',color = 'smoking_status',title = 'Stroke distribution by smoking status')
 if Menu=="Dashboard":st.write(smoke_stroke)
