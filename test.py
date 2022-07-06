@@ -13,7 +13,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 
-Menu = option_menu(None, ["Main Page","Dataset","Descriptive Statistics","Categorical Features","Numerical Features","Predictive Model"],icons=["home","cloud","statistics","bar-chart-line","number","model"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
+Menu = option_menu(None, ["Main Page","Dataset","Descriptive Statistics","Categorical Features","Numerical Features","Predictive Model"],icons=["house","cloud","sliders","bar-chart-line","sliders","gear"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
 if Menu == "Main Page": st.title('Heart Stroke Dashboard')
 if Menu == "Dataset": st.title('Heart Stroke Dataset')
 if Menu == "Dashboard": st.title('Heart Stroke Exploratory Data Analysis')
@@ -118,7 +118,7 @@ def pie_graph(df,title,values):
     ])
 
     fig.update_layout(title_text = title)
-    if Menu=="Dashboard":st.write(fig)
+    if Menu=="Descriptive Statistics":st.write(fig)
 
 # Start Exploratory Data Analysis
 # Check the distribution of each feature in the dataset by visualizing it using a pie graph
@@ -167,13 +167,23 @@ if Menu=="Descriptive Statistics":st.write(work)
 
 
 # BMI Distribution                                  
-#bmi = displot('bmi')                                 
-#if Menu=="Dashboard":st.write(bmi)                                 
+if Menu=="Descriptive Statistics": bmi = plt.subplots(figsize=(8, 5))
+if Menu=="Descriptive Statistics": plt.hist(data_eda['bmi'], bins=10) #10 bins is the default
+if Menu=="Descriptive Statistics": plt.xlabel("bmi")
+if Menu=="Descriptive Statistics": plt.title("Density")
+if Menu=="Descriptive Statistics": plt.ylabel("Body Mass Index Distribution")
+if Menu=="Descriptive Statistics": st.pyplot(bmi)                               
                                  
    
 # Average Glucose Level Distribution                                 
-#glucose =  distplot('avg_glucose_level')
-#if Menu=="Dashboard":st.write(glucose)                                  
+if Menu=="Descriptive Statistics": glucose = plt.subplots(figsize=(8, 5))
+if Menu=="Descriptive Statistics": plt.hist(data_eda['avg_glucose_level'], bins=10) #10 bins is the default
+if Menu=="Descriptive Statistics": plt.xlabel("average glucose level")
+if Menu=="Descriptive Statistics": plt.title("Density")
+if Menu=="Descriptive Statistics": plt.ylabel("Average Glucose Level Distribution")
+if Menu=="Descriptive Statistics": st.pyplot(glucose) 
+
+
                                  
                                  
 def count_bar_plot(df,x,hue,title):
@@ -205,7 +215,7 @@ def horizontal_bar_chart(df,x,y,color,title):
     fig = px.bar(df, x=x, y=y, color=color,                  
                  height=600,
                  title=title)
-    if Menu=="Dashboard":st.write(fig)
+    if Menu=="Categorical Features":st.write(fig)
     
 
                                  
