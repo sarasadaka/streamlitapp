@@ -210,20 +210,20 @@ def horizontal_bar_chart(df,x,y,color,title):
     fig = px.bar(df, x=x, y=y, color=color,                  
                  height=600,
                  title=title)
-    if Menu=="Categorical Features":st.write(fig)
+    #if Menu=="Categorical Features":st.write(fig)
     
 
                                  
 # Stroke Distribution by Work Type                                 
 group = data_eda.groupby(['stroke','work_type'],as_index = False).size().sort_values(by='size')
 work_type = horizontal_bar_chart(df = group,x = 'stroke',y = 'size',color = 'work_type',title = 'Stroke distribution by work type')
-if Menu=="Categorical Features":st.write(work_type)
+if Menu=="Categorical Features":st.pyplot(work_type)
 
 
 # Stroke distribution by Smoking Status
 group = data_eda.groupby(['stroke','smoking_status'],as_index = False).size().sort_values(by='size')
 smoke_stroke = horizontal_bar_chart(df = group,x = 'stroke',y = 'size',color = 'smoking_status',title = 'Stroke distribution by smoking status')
-if Menu=="Categorical Features":st.write(smoke_stroke)
+if Menu=="Categorical Features":st.pyplot(smoke_stroke)
 
 
 def cnditioning_linear_plot(x,y,hue,df):
