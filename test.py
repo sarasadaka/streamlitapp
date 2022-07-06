@@ -167,21 +167,16 @@ if Menu=="Descriptive Statistics":st.write(work)
 
 
 # BMI Distribution                                  
-if Menu=="Descriptive Statistics": bmi = plt.subplots(figsize=(8, 5))
-if Menu=="Descriptive Statistics": plt.hist(data_eda['bmi'], bins=10) #10 bins is the default
-if Menu=="Descriptive Statistics": plt.xlabel("bmi")
-if Menu=="Descriptive Statistics": plt.title("Density")
-if Menu=="Descriptive Statistics": plt.ylabel("Body Mass Index Distribution")
-if Menu=="Descriptive Statistics": st.plotly_chart(bmi)                               
+                              
                                  
    
 # Average Glucose Level Distribution                                 
-if Menu=="Descriptive Statistics": glucose = plt.subplots(figsize=(8, 5))
-if Menu=="Descriptive Statistics": plt.hist(data_eda['avg_glucose_level'], bins=10) #10 bins is the default
-if Menu=="Descriptive Statistics": plt.xlabel("average glucose level")
-if Menu=="Descriptive Statistics": plt.title("Density")
-if Menu=="Descriptive Statistics": plt.ylabel("Average Glucose Level Distribution")
-if Menu=="Descriptive Statistics": st.plotly_chart(glucose) 
+#if Menu=="Descriptive Statistics": glucose = plt.subplots(figsize=(8, 5))
+#if Menu=="Descriptive Statistics": plt.hist(data_eda['avg_glucose_level'], bins=10) #10 bins is the default
+#if Menu=="Descriptive Statistics": plt.xlabel("average glucose level")
+#if Menu=="Descriptive Statistics": plt.title("Density")
+#if Menu=="Descriptive Statistics": plt.ylabel("Average Glucose Level Distribution")
+#if Menu=="Descriptive Statistics": st.plotly_chart(glucose) 
 
 
                                  
@@ -231,6 +226,20 @@ smoke_stroke = horizontal_bar_chart(df = group,x = 'stroke',y = 'size',color = '
 if Menu=="Categorical Features":st.write(smoke_stroke)
 
 
+def cnditioning_linear_plot(x,y,hue,df):
+    sns.lmplot(x=x, y=y, hue=hue, data=df,
+               markers=["o", "x"], palette="Set1")  
+  
+ fig1 = cnditioning_linear_plot('age','avg_glucose_level','stroke',data_eda) 
+ if Menu=="Numerical Features":st.write(fig1) 
+  
+ fig2 = cnditioning_linear_plot('bmi','avg_glucose_level','stroke',data_eda) 
+ if Menu=="Numerical Features":st.write(fig2)  
+  
+ fig3 = cnditioning_linear_plot('bmi','age','stroke',data_eda)
+ if Menu=="Numerical Features":st.write(fig3)  
+  
+  
 f, ax = plt.subplots(figsize = (12,10))
 sns.heatmap(df.corr(),
             annot = True,
