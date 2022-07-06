@@ -98,52 +98,52 @@ def pie_graph(df,title,values):
     ])
 
     fig.update_layout(title_text = title)
-    #if Menu=="Descriptive Statistics":st.write(fig)
+    if Menu=="Descriptive Statistics":st.pyplot(fig)
 
 # Start Exploratory Data Analysis
 # Check the distribution of each feature in the dataset by visualizing it using a pie graph
 
 # Age Distribution                                 
 age = pie_graph(data_eda,"Age Group Distribution",'age group')
-if Menu=="Descriptive Statistics": st.plotly(age)
+if Menu=="Descriptive Statistics": st.pyplot(age)
 
 # Gender Distribution                                 
 gender =pie_graph(data_eda, 'Gender Distribution','gender')
-if Menu=="Descriptive Statistics": st.plotly(gender)
+if Menu=="Descriptive Statistics": st.pyplot(gender)
 
 
 # Hypertension Distribution                                 
 hypertension = pie_graph(data_eda, 'Hypertension Distribution','hypertension')
-if Menu=="Descriptive Statistics":st.plotly(hypertension)
+if Menu=="Descriptive Statistics":st.pyplot(hypertension)
 
 
  # Heart Disease Distribution                                
 heart = pie_graph(data_eda, 'Heart disease Distribution','heart_disease')
-if Menu=="Descriptive Statistics":st.plotly(heart)
+if Menu=="Descriptive Statistics":st.pyplot(heart)
 
 
 # Ever married Distribution                                 
 married = pie_graph(data_eda, 'Ever married  Distribution','ever_married')
-if Menu=="Descriptive Statistics":st.plotly(married)
+if Menu=="Descriptive Statistics":st.pyplot(married)
 
                                  
 # Residence Type Distribution 
 residence = pie_graph(data_eda, 'Residence type Distribution','Residence_type')                                 
-if Menu=="Descriptive Statistics":st.plotly(residence)                                 
+if Menu=="Descriptive Statistics":st.pyplot(residence)                                 
 
                                  
 # Smoking Distribution
 smoke = pie_graph(data_eda,'Smoking Status Distribution','smoking_status')                                 
-if Menu=="Descriptive Statistics":st.plotly(smoke)                                  
+if Menu=="Descriptive Statistics":st.pyplot(smoke)                                  
                                  
 # Stroke Distribution                                 
 stroke = pie_graph(data_eda, 'Stroke Distribution', 'stroke')
-if Menu=="Descriptive Statistics":st.plotly(stroke)
+if Menu=="Descriptive Statistics":st.pyplot(stroke)
 
 
 # Work Type Distribution                                 
 work = pie_graph(data_eda, 'Work type Distribution','work_type')
-if Menu=="Descriptive Statistics":st.plotly(work)
+if Menu=="Descriptive Statistics":st.pyplot(work)
 
 
                                  
