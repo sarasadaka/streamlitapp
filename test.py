@@ -230,14 +230,14 @@ def cnditioning_linear_plot(x,y,hue,df):
     sns.lmplot(x=x, y=y, hue=hue, data=df,
                markers=["o", "x"], palette="Set1")  
   
- fig1 = cnditioning_linear_plot('age','avg_glucose_level','stroke',data_eda) 
- if Menu=="Numerical Features":st.write(fig1) 
+fig1 = cnditioning_linear_plot('age','avg_glucose_level','stroke',data_eda) 
+if Menu=="Numerical Features":st.write(fig1) 
   
- fig2 = cnditioning_linear_plot('bmi','avg_glucose_level','stroke',data_eda) 
- if Menu=="Numerical Features":st.write(fig2)  
+fig2 = cnditioning_linear_plot('bmi','avg_glucose_level','stroke',data_eda) 
+if Menu=="Numerical Features":st.write(fig2)  
   
- fig3 = cnditioning_linear_plot('bmi','age','stroke',data_eda)
- if Menu=="Numerical Features":st.write(fig3)  
+fig3 = cnditioning_linear_plot('bmi','age','stroke',data_eda)
+if Menu=="Numerical Features":st.write(fig3)  
   
   
 f, ax = plt.subplots(figsize = (12,10))
