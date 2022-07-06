@@ -232,13 +232,13 @@ def cnditioning_linear_plot(x,y,hue,df):
     if Menu == "Numerical Features": st.plotly(lin)
   
 fig1 = cnditioning_linear_plot('age','avg_glucose_level','stroke',data_eda) 
-if Menu=="Numerical Features":st.write(fig1) 
+if Menu=="Numerical Features":st.plotly(fig1) 
   
 fig2 = cnditioning_linear_plot('bmi','avg_glucose_level','stroke',data_eda) 
-if Menu=="Numerical Features":st.write(fig2)  
+if Menu=="Numerical Features":st.plotly(fig2)  
   
 fig3 = cnditioning_linear_plot('bmi','age','stroke',data_eda)
-if Menu=="Numerical Features":st.write(fig3)  
+if Menu=="Numerical Features":st.plotly(fig3)  
   
   
 f, ax = plt.subplots(figsize = (12,10))
