@@ -233,7 +233,7 @@ for x in ['age','avg_glucose_level','bmi']:
         if Menu == 'Numerical Features': b = sns.regplot(x = x, y = y, data = df)
         if Menu == 'Numerical Features': plt.ylabel(y.split()[0] + ' ' + y.split()[1] if len(y.split()) > 1 else y)
 
-if Menu == 'Numerical Features': st.pyplot(b) 
+if Menu == 'Numerical Features': st.plotly_chart(b) 
   
   
 f, ax = plt.subplots(figsize = (12,10))
