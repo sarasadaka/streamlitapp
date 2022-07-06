@@ -229,16 +229,16 @@ if Menu=="Categorical Features":st.write(smoke_stroke)
 def cnditioning_linear_plot(x,y,hue,df):
     lin = sns.lmplot(x=x, y=y, hue=hue, data=df,
                markers=["o", "x"], palette="Set1") 
-    if Menu == "Numerical Features": st.plotly(lin)
+    if Menu == "Numerical Features": st.plotly_chart(lin)
   
 fig1 = cnditioning_linear_plot('age','avg_glucose_level','stroke',data_eda) 
-if Menu=="Numerical Features":st.plotly(fig1) 
+if Menu=="Numerical Features":st.plotly_chart(fig1) 
   
 fig2 = cnditioning_linear_plot('bmi','avg_glucose_level','stroke',data_eda) 
-if Menu=="Numerical Features":st.plotly(fig2)  
+if Menu=="Numerical Features":st.plotly_chart(fig2)  
   
 fig3 = cnditioning_linear_plot('bmi','age','stroke',data_eda)
-if Menu=="Numerical Features":st.plotly(fig3)  
+if Menu=="Numerical Features":st.plotly_chart(fig3)  
   
   
 f, ax = plt.subplots(figsize = (12,10))
