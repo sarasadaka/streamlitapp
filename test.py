@@ -14,7 +14,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 Menu = option_menu(None, ["Main Page","Dataset","Dashboard"],icons=["home","cloud","bar-chart-line"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
-if Menu == "Main Page": st.title('Heart Stroke Dashboard")
+if Menu == "Main Page": st.title('Heart Stroke Dashboard')
 if Menu == "Dataset": st.title('Heart Stroke Dataset')
 if Menu == "Dashboard": st.title('Heart Stroke Exploratory Data Analysis')
 
