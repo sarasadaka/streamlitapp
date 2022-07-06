@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 from imblearn.over_sampling import SMOTE
 from sklearn import preprocessing
 from streamlit_option_menu import option_menu
-#import tkinter
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
@@ -18,7 +18,8 @@ if Menu == "Main Page": st.title('Heart Stroke Dashboard')
 if Menu == "Dataset": st.title('Heart Stroke Dataset')
 if Menu == "Dashboard": st.title('Heart Stroke Exploratory Data Analysis')
 
-if Menu == "Main Page": st.caption('The aim of this dashboard is to visualize the risk factors that might lead to heart stroke and predict based on the given features whether a patient is likely to have a stroke or not') 
+  
+if Menu == "Main Page": st.header('The aim of this dashboard is to visualize the risk factors that might lead to heart stroke based on teh given features in the dataset')
 
 df= pd.read_csv("healthcare-dataset-stroke-data.csv")
 if Menu=="Dataset": st.write(df)
@@ -52,27 +53,6 @@ print('Total number of our missing value is:', total_missing_value)
 # We only have missing values in bmi column, so we will replace them with the mean of the column rather than dropping them
 df['bmi'].fillna(df['bmi'].mean(),inplace=True)
 df['bmi'].isnull().sum()
-
-
-
-object_col = ["gender", "ever_married" ,"Residence_type","work_type","smoking_status"]
-label_encoder = preprocessing.LabelEncoder()
-for col in object_col:
-    df[col]=  label_encoder.fit_transform(df[col])
-
-
-X = df.drop(columns = ['stroke'])
-y = df['stroke']
-
-# SMOTE technique to balance out the dataset
-sm = SMOTE(random_state=123)
-X_sm , y_sm = sm.fit_resample(X,y)
-
-print(f'''Shape of X before SMOTE:{X.shape}
-Shape of X after SMOTE:{X_sm.shape}''',"\n\n")
-
-print(f'''Target Class distributuion before SMOTE:\n{y.value_counts(normalize=True)}
-Target Class distributuion after SMOTE :\n{y_sm.value_counts(normalize=True)}''')
 
 
 
@@ -118,65 +98,52 @@ def pie_graph(df,title,values):
     ])
 
     fig.update_layout(title_text = title)
-    if Menu=="Descriptive Statistics":st.write(fig)
+    #if Menu=="Descriptive Statistics":st.write(fig)
 
 # Start Exploratory Data Analysis
 # Check the distribution of each feature in the dataset by visualizing it using a pie graph
 
 # Age Distribution                                 
 age = pie_graph(data_eda,"Age Group Distribution",'age group')
-if Menu=="Descriptive Statistics": st.write(age)
+if Menu=="Descriptive Statistics": st.plotly(age)
 
 # Gender Distribution                                 
 gender =pie_graph(data_eda, 'Gender Distribution','gender')
-if Menu=="Descriptive Statistics": st.write(gender)
+if Menu=="Descriptive Statistics": st.plotly(gender)
 
 
 # Hypertension Distribution                                 
 hypertension = pie_graph(data_eda, 'Hypertension Distribution','hypertension')
-if Menu=="Descriptive Statistics":st.write(hypertension)
+if Menu=="Descriptive Statistics":st.plotly(hypertension)
 
 
  # Heart Disease Distribution                                
 heart = pie_graph(data_eda, 'Heart disease Distribution','heart_disease')
-if Menu=="Descriptive Statistics":st.write(heart)
+if Menu=="Descriptive Statistics":st.plotly(heart)
 
 
 # Ever married Distribution                                 
 married = pie_graph(data_eda, 'Ever married  Distribution','ever_married')
-if Menu=="Descriptive Statistics":st.write(married)
+if Menu=="Descriptive Statistics":st.plotly(married)
 
                                  
 # Residence Type Distribution 
 residence = pie_graph(data_eda, 'Residence type Distribution','Residence_type')                                 
-if Menu=="Descriptive Statistics":st.write(residence)                                 
+if Menu=="Descriptive Statistics":st.plotly(residence)                                 
 
                                  
 # Smoking Distribution
 smoke = pie_graph(data_eda,'Smoking Status Distribution','smoking_status')                                 
-if Menu=="Descriptive Statistics":st.write(smoke)                                  
+if Menu=="Descriptive Statistics":st.plotly(smoke)                                  
                                  
 # Stroke Distribution                                 
 stroke = pie_graph(data_eda, 'Stroke Distribution', 'stroke')
-if Menu=="Descriptive Statistics":st.write(stroke)
+if Menu=="Descriptive Statistics":st.plotly(stroke)
 
 
 # Work Type Distribution                                 
 work = pie_graph(data_eda, 'Work type Distribution','work_type')
-if Menu=="Descriptive Statistics":st.write(work)
-
-
-# BMI Distribution                                  
-                              
-                                 
-   
-# Average Glucose Level Distribution                                 
-#if Menu=="Descriptive Statistics": glucose = plt.subplots(figsize=(8, 5))
-#if Menu=="Descriptive Statistics": plt.hist(data_eda['avg_glucose_level'], bins=10) #10 bins is the default
-#if Menu=="Descriptive Statistics": plt.xlabel("average glucose level")
-#if Menu=="Descriptive Statistics": plt.title("Density")
-#if Menu=="Descriptive Statistics": plt.ylabel("Average Glucose Level Distribution")
-#if Menu=="Descriptive Statistics": st.plotly_chart(glucose) 
+if Menu=="Descriptive Statistics":st.plotly(work)
 
 
                                  
@@ -252,12 +219,12 @@ if Menu=="Numerical Features":st.pyplot(f)
 
 
 # Average glucose level as per age 
-#if Menu=="Dashboard":f, age_glucose = plt.subplots(1,1, figsize=(10,8))
-#if Menu=="Dashboard": age_glucose = sns.scatterplot(data = df , x = 'age' , y ='avg_glucose_level',hue='bmi').set(title='Average Glucose Level & BMI as per Age')
-#if Menu=="Dashboard": st.pyplot(f)
+if Menu=="Numerical Features":f, age_glucose = plt.subplots(1,1, figsize=(10,8))
+if Menu=="Numerical Features": age_glucose = sns.scatterplot(data = df , x = 'age' , y ='avg_glucose_level').set(title='Average Glucose Level as per Age')
+if Menu=="Numerical Features": st.pyplot(f)
 
 
 # BMI as per age
-#if Menu=="Dashboard":f1, age_bmi = plt.subplots(1,1, figsize=(10,8))
-#if Menu=="Dashboard": age_bmi = sns.scatterplot(data = df , x = 'age' , y ='bmi')
-#if Menu=="Dashboard": st.pyplot(f1)
+if Menu=="Numerical Features":f1, age_bmi = plt.subplots(1,1, figsize=(10,8))
+if Menu=="Numerical Features": age_bmi = sns.scatterplot(data = df , x = 'age' , y ='bmi').set(title='BMI as per Age')
+if Menu=="Numerical Features": st.pyplot(f1)
