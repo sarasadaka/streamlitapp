@@ -13,7 +13,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 
-Menu = option_menu(None, ["Main Page","Dataset","Dashboard"],icons=["home","cloud","bar-chart-line"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
+Menu = option_menu(None, ["Main Page","Dataset","Descriptive Statistics","Categorical Features","Numerical Features","Predictive Model"],icons=["home","cloud","statistics","bar-chart-line","number","model"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
 if Menu == "Main Page": st.title('Heart Stroke Dashboard')
 if Menu == "Dataset": st.title('Heart Stroke Dataset')
 if Menu == "Dashboard": st.title('Heart Stroke Exploratory Data Analysis')
@@ -125,45 +125,45 @@ def pie_graph(df,title,values):
 
 # Age Distribution                                 
 age = pie_graph(data_eda,"Age Group Distribution",'age group')
-if Menu=="Dashboard": st.write(age)
+if Menu=="Descriptive Statistics": st.write(age)
 
 # Gender Distribution                                 
 gender =pie_graph(data_eda, 'Gender Distribution','gender')
-if Menu=="Dashboard": st.write(gender)
+if Menu=="Descriptive Statistics": st.write(gender)
 
 
 # Hypertension Distribution                                 
 hypertension = pie_graph(data_eda, 'Hypertension Distribution','hypertension')
-if Menu=="Dashboard":st.write(hypertension)
+if Menu=="Descriptive Statistics":st.write(hypertension)
 
 
  # Heart Disease Distribution                                
 heart = pie_graph(data_eda, 'Heart disease Distribution','heart_disease')
-if Menu=="Dashboard":st.write(heart)
+if Menu=="Descriptive Statistics":st.write(heart)
 
 
 # Ever married Distribution                                 
 married = pie_graph(data_eda, 'Ever married  Distribution','ever_married')
-if Menu=="Dashboard":st.write(married)
+if Menu=="Descriptive Statistics":st.write(married)
 
                                  
 # Residence Type Distribution 
 residence = pie_graph(data_eda, 'Residence type Distribution','Residence_type')                                 
-if Menu=="Dashboard":st.write(residence)                                 
+if Menu=="Descriptive Statistics":st.write(residence)                                 
 
                                  
 # Smoking Distribution
 smoke = pie_graph(data_eda,'Smoking Status Distribution','smoking_status')                                 
-if Menu=="Dashboard":st.write(smoke)                                  
+if Menu=="Descriptive Statistics":st.write(smoke)                                  
                                  
 # Stroke Distribution                                 
 stroke = pie_graph(data_eda, 'Stroke Distribution', 'stroke')
-if Menu=="Dashboard":st.write(stroke)
+if Menu=="Descriptive Statistics":st.write(stroke)
 
 
 # Work Type Distribution                                 
 work = pie_graph(data_eda, 'Work type Distribution','work_type')
-if Menu=="Dashboard":st.write(work)
+if Menu=="Descriptive Statistics":st.write(work)
 
 
 # BMI Distribution                                  
@@ -183,22 +183,22 @@ def count_bar_plot(df,x,hue,title):
 
 
 gender_stroke = count_bar_plot(data_eda,'gender','stroke','Stroke distribution by Gender')
-if Menu=="Dashboard":st.pyplot(gender_stroke)
+if Menu=="Categorical Features":st.pyplot(gender_stroke)
 
 
 hypertension_stroke = count_bar_plot(data_eda,'hypertension','stroke','Stroke distribution by hypertension')
-if Menu=="Dashboard":st.pyplot(hypertension_stroke)
+if Menu=="Categorical Features":st.pyplot(hypertension_stroke)
 
 heart_stroke = count_bar_plot(data_eda,'heart_disease','stroke','Stroke distribution by heart_disease')
-if Menu=="Dashboard":st.pyplot(heart_stroke)
+if Menu=="Categorical Features":st.pyplot(heart_stroke)
 
 
 married_stroke = count_bar_plot(data_eda,'ever_married','stroke','Stroke distribution by ever married')
-if Menu=="Dashboard":st.pyplot(married_stroke)
+if Menu=="Categorical Features":st.pyplot(married_stroke)
 
 
 residence_stroke = count_bar_plot(data_eda,'Residence_type','stroke','Stroke distribution by Residence type')
-if Menu=="Dashboard":st.pyplot(residence_stroke)
+if Menu=="Categorical Features":st.pyplot(residence_stroke)
 
 
 def horizontal_bar_chart(df,x,y,color,title):    
@@ -212,13 +212,13 @@ def horizontal_bar_chart(df,x,y,color,title):
 # Stroke Distribution by Work Type                                 
 group = data_eda.groupby(['stroke','work_type'],as_index = False).size().sort_values(by='size')
 work_type = horizontal_bar_chart(df = group,x = 'stroke',y = 'size',color = 'work_type',title = 'Stroke distribution by work type')
-if Menu=="Dashboard":st.write(work_type)
+if Menu=="Categorical Features":st.write(work_type)
 
 
 # Stroke distribution by Smoking Status
 group = data_eda.groupby(['stroke','smoking_status'],as_index = False).size().sort_values(by='size')
 smoke_stroke = horizontal_bar_chart(df = group,x = 'stroke',y = 'size',color = 'smoking_status',title = 'Stroke distribution by smoking status')
-if Menu=="Dashboard":st.write(smoke_stroke)
+if Menu=="Categorical Features":st.write(smoke_stroke)
 
 
 f, ax = plt.subplots(figsize = (12,10))
@@ -227,17 +227,17 @@ sns.heatmap(df.corr(),
             linewidths = .5,
             fmt = '.1f',
             ax = ax)
-if Menu=="Dashboard":st.pyplot(f)
+if Menu=="Numerical Features":st.pyplot(f)
 
 
 
 # Average glucose level as per age 
-if Menu=="Dashboard":f, age_glucose = plt.subplots(1,1, figsize=(10,8))
-if Menu=="Dashboard": age_glucose = sns.scatterplot(data = df , x = 'age' , y ='avg_glucose_level',hue='bmi').set(title='Average Glucose Level & BMI as per Age')
-if Menu=="Dashboard": st.pyplot(f)
+#if Menu=="Dashboard":f, age_glucose = plt.subplots(1,1, figsize=(10,8))
+#if Menu=="Dashboard": age_glucose = sns.scatterplot(data = df , x = 'age' , y ='avg_glucose_level',hue='bmi').set(title='Average Glucose Level & BMI as per Age')
+#if Menu=="Dashboard": st.pyplot(f)
 
 
 # BMI as per age
-if Menu=="Dashboard":f1, age_bmi = plt.subplots(1,1, figsize=(10,8))
-if Menu=="Dashboard": age_bmi = sns.scatterplot(data = df , x = 'age' , y ='bmi')
-if Menu=="Dashboard": st.pyplot(f1)
+#if Menu=="Dashboard":f1, age_bmi = plt.subplots(1,1, figsize=(10,8))
+#if Menu=="Dashboard": age_bmi = sns.scatterplot(data = df , x = 'age' , y ='bmi')
+#if Menu=="Dashboard": st.pyplot(f1)
