@@ -14,14 +14,14 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 Menu = option_menu(None, ["Main Page","Dataset","Descriptive Statistics","Categorical Features","Numerical Features"],icons=["house","cloud","sliders","bar-chart-line","sliders"],menu_icon="cast", default_index=0, orientation="horizontal", styles={"container": {"padding": "0!important", "background-color": "#fafafa"},"icon": {"color": "black", "font-size": "25px"}, "nav-link": {"font-size": "15px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},"nav-link-selected": {"background-color": "pink"},})
-if Menu == "Main Page": st.title('Heart Stroke Dashboard')
-if Menu == "Dataset": st.title('Heart Stroke Dataset')
-if Menu == "Descriptive Statistics": st.title('Heart Stroke Exploratory Data Analysis')
+if Menu == "Main Page": st.title('Stroke Dashboard')
+if Menu == "Dataset": st.title('Stroke Dataset')
+if Menu == "Descriptive Statistics": st.title('Stroke Exploratory Data Analysis')
 if Menu == "Categorical Features": st.title('Distribution of Categorical Features')
 if Menu == "Numerical Features": st.title('Distribution of Numerical Features') 
 
   
-if Menu == "Main Page": st.header('The aim of this dashboard is to visualize the risk factors that might lead to heart stroke based on the given features in the dataset')
+if Menu == "Main Page": st.header('The aim of this dashboard is to visualize the risk factors that might lead to stroke based on the given features in the dataset')
 
 df= pd.read_csv("healthcare-dataset-stroke-data.csv")
 if Menu=="Dataset": st.write(df)
